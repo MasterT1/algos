@@ -13,14 +13,15 @@ using namespace std;
 \returns location of key if found or -1 if not found
 */
 //int linearSearch(auto data, auto key);//prototype
-void selectionSort(auto &Data);
+int selectionSort(auto &Data);
 void printVector(auto &inputs);
 
 
 int main()
 {
   vector<string> inputs;
-  string search_key, input;   
+  string search_key, input;
+  int count;   
 
    cout<<"Welcome to \"Sort it\". We first need some input data."<<endl;
    cout<<"We'll assume the inputs do not have any spaces."<<endl<<endl;
@@ -42,17 +43,22 @@ int main()
        exit(1);//nothing to do but quit program
   }   
    
-   selectionSort(inputs);
+   count = selectionSort(inputs);
    
-   printVector(inputs);     
+   cout << count << endl;
+   
+   printVector(inputs);
+        
 
    return 0;
 }
 
 
 
-void selectionSort(auto & Data)
+int selectionSort(auto & Data)
 {
+	int counter = 0;
+	
 	for (int i= 0; i < Data.size(); i++)
 	{
 		int min = i;
@@ -64,7 +70,13 @@ void selectionSort(auto & Data)
 			}
 			swap(Data[i],Data[min]);			
 		}
+	if (i == 20000)
+		{
+			counter++;
+		}
 	}
+	return counter;
+	
 }
 
 void printVector(auto &newprintInput)
