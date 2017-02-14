@@ -5,10 +5,11 @@ Sorting Experiment
   Attribute   | Value
   ------------|---------
   **Time left**   |  ?? Hrs: ?? Min
-  **Algorithm**   |   ...sort
-  **Expected passes** | ?????
+  **Algorithm**   |   Selection sort
+  **Expected passes** | 999999
   **Observed passes** | ????
   
+  Estimated time 9mins x 50
   
    Attribute   | Value
   ------------|---------
