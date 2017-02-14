@@ -2,6 +2,7 @@
 #include <cstdlib>//for "exit()" on some systems
 #include <vector>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -20,32 +21,51 @@ void printVector(auto &inputs);
 int main()
 {
   vector<string> inputs;
-  string search_key, input;
-  int count;   
+  string input;
+  int count;
+  string readDataFile;
+  string line;   
 
-   cout<<"Welcome to \"Sort it\". We first need some input data."<<endl;
-   cout<<"We'll assume the inputs do not have any spaces."<<endl<<endl;
-   cout<<"To end input type the #-character (followed by Enter)"<<endl<<endl;
+	cout<<"Read data from a file: ? (y or n)" <<endl;
+	cin>>readDataFile;
+	
+	if (readDataFile == "n")
+	{
+	   cout<<"Welcome to \"Sort it\". We first need some input data."<<endl;
+	   cout<<"We'll assume the inputs do not have any spaces."<<endl<<endl;
+	   cout<<"To end input type the #-character (followed by Enter)"<<endl<<endl;
 
-   cin>>input;
- 
-    while(input != "#")//read an unknown number of inputs from keyboard
-    {
-       inputs.push_back(input);
-       cin>>input;
-    }
+	   cin>>input;
+	 
+		while(input != "#")//read an unknown number of inputs from keyboard
+		{
+		   inputs.push_back(input);
+		   cin>>input;
+		}
 
-   cout<<endl<<"["<<inputs.size()<<" values read from input source]"<<endl<<endl;
+	   cout<<endl<<"["<<inputs.size()<<" values read from input source]"<<endl<<endl;
 
-  if(inputs.size() == 0)//no input
-  {
-      cout<<endl<<"No input received, quiting..."<<endl<<endl;
-       exit(1);//nothing to do but quit program
-  }   
+	  if(inputs.size() == 0)//no input
+	  {
+		  cout<<endl<<"No input received, quiting..."<<endl<<endl;
+		   exit(1);//nothing to do but quit program
+	  }   
+	}else if (readDataFile == "n")
+	{
+	   // open a file in read mode.
+	   ifstream infile; 
+	   infile.open("top1Mweb"); 
+	 
+	   cout << "Reading from the file" << endl; 
+	   while (getline(infile, line))
+	   {
+		   inputs.push_back(line);
+		   }
+	}	
    
    count = selectionSort(inputs);
    
-   cout << count << endl;
+   cout << "Search took: " <<count << " passes of 20,000" << endl;
    
    printVector(inputs);
         
@@ -91,5 +111,4 @@ void printVector(auto &newprintInput)
 	}
 	
 	cout << endl;
-
 }
